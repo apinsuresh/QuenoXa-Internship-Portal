@@ -32,15 +32,15 @@ export default function Home() {
           </div>
 
           {/* Left Page (40%) */}
-          <div className="w-full xl:w-[40%] relative overflow-hidden flex flex-col p-8 md:p-12 lg:p-16">
+          <div className="w-full xl:w-[40%] relative overflow-hidden flex flex-col p-4 sm:p-8 md:p-12 lg:p-16">
             {/* Ruled lines background */}
             <div className="absolute inset-0 opacity-[0.15] pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(transparent, transparent 39px, #969696 39px, #969696 40px)', marginTop: '4rem' }}></div>
             {/* Left red margin line */}
-            <div className="absolute left-12 top-0 bottom-0 w-[2px] bg-red-400/30 pointer-events-none"></div>
+            <div className="hidden md:block absolute left-12 top-0 bottom-0 w-[2px] bg-red-400/30 pointer-events-none"></div>
             {/* Left double red margin line */}
-            <div className="absolute left-14 top-0 bottom-0 w-[2px] bg-red-400/30 pointer-events-none"></div>
+            <div className="hidden md:block absolute left-14 top-0 bottom-0 w-[2px] bg-red-400/30 pointer-events-none"></div>
 
-            <div className="relative z-10 ml-8 h-full flex flex-col">
+            <div className="relative z-10 ml-0 md:ml-8 h-full flex flex-col">
               <HeroLeftPage />
             </div>
           </div>
@@ -49,12 +49,12 @@ export default function Home() {
           <div className="hidden xl:block w-[40px] bg-gradient-to-r from-black/5 via-black/10 to-black/5 shadow-[inset_0_0_20px_rgba(0,0,0,0.1)] border-l border-r border-black/5 z-20"></div>
 
           {/* Right Page (60%) */}
-          <div className="w-full xl:w-[60%] relative bg-[#F8F6F0] rounded-r-[30px] p-8 md:p-12 lg:p-16 flex">
+          <div className="w-full xl:w-[60%] relative bg-[#F8F6F0] rounded-b-md md:rounded-b-none md:rounded-r-[30px] p-4 sm:p-8 md:p-12 lg:p-16 flex">
             {/* Ruled lines background */}
             <div className="absolute inset-0 opacity-[0.15] pointer-events-none" style={{ backgroundImage: 'repeating-linear-gradient(transparent, transparent 39px, #969696 39px, #969696 40px)', marginTop: '4rem' }}></div>
             
             {/* Main Content Area of Right Page */}
-            <div className="relative z-10 w-full xl:w-[75%] pr-8">
+            <div className="relative z-10 w-full xl:w-[75%] pr-0 xl:pr-8">
               <ApplicationForm onProgressChange={setFormProgress} progress={formProgress} />
             </div>
 

@@ -39,6 +39,17 @@ const domains = [
   "Data Analytics"
 ];
 
+const departmentAbbreviations: Record<string, string> = {
+  "ARTIFICIAL INTELLIGENCE & DATA SCIENCE (AI & DS)": "AI & DS",
+  "COMPUTER SCIENCE AND ENGINEERING (CSE)": "CSE",
+  "INFORMATION TECHNOLOGY (IT)": "IT",
+  "ELECTRONICS AND COMMUNICATION ENGINEERING (ECE)": "ECE",
+  "ELECTRICAL AND ELECTRONICS ENGINEERING (EEE)": "EEE",
+  "MECHANICAL ENGINEERING": "ME",
+  "CIVIL ENGINEERING": "CE",
+  "Other": "Other"
+};
+
 const formSchema = z.object({
   name: z.string().min(2, { message: "✏ Name required" }),
   linkedin: z.string().url({ message: "✏ Valid LinkedIn required" }),
@@ -286,7 +297,7 @@ export function ApplicationForm({ onProgressChange, progress }: { onProgressChan
               )}
             />
 
-            <div className="col-span-1 md:col-span-2 grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-x-8 gap-y-6">
+            <div className="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
               <FormField
                 control={form.control}
                 name="department"
@@ -296,18 +307,20 @@ export function ApplicationForm({ onProgressChange, progress }: { onProgressChan
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger title={field.value} className="border border-zinc-300 rounded-md bg-white shadow-sm focus:ring-[#6DFF33] h-12 font-sans truncate whitespace-nowrap">
-                          <SelectValue placeholder="Select your department" />
+                          <SelectValue placeholder="Select your department">
+                            {field.value ? departmentAbbreviations[field.value] || field.value : undefined}
+                          </SelectValue>
                         </SelectTrigger>
                       </FormControl>
-                      <SelectContent>
-                        <SelectItem value="ARTIFICIAL INTELLIGENCE & DATA SCIENCE (AI & DS)" title="ARTIFICIAL INTELLIGENCE & DATA SCIENCE (AI & DS)">AI & DS</SelectItem>
-                        <SelectItem value="COMPUTER SCIENCE AND ENGINEERING (CSE)" title="COMPUTER SCIENCE AND ENGINEERING (CSE)">CSE</SelectItem>
-                        <SelectItem value="INFORMATION TECHNOLOGY (IT)" title="INFORMATION TECHNOLOGY (IT)">IT</SelectItem>
-                        <SelectItem value="ELECTRONICS AND COMMUNICATION ENGINEERING (ECE)" title="ELECTRONICS AND COMMUNICATION ENGINEERING (ECE)">ECE</SelectItem>
-                        <SelectItem value="ELECTRICAL AND ELECTRONICS ENGINEERING (EEE)" title="ELECTRICAL AND ELECTRONICS ENGINEERING (EEE)">EEE</SelectItem>
-                        <SelectItem value="MECHANICAL ENGINEERING" title="MECHANICAL ENGINEERING">ME</SelectItem>
-                        <SelectItem value="CIVIL ENGINEERING" title="CIVIL ENGINEERING">CE</SelectItem>
-                        <SelectItem value="Other" title="Other">Other</SelectItem>
+                      <SelectContent className="w-[calc(100vw-32px)] md:w-auto md:min-w-[380px] max-w-[500px]">
+                        <SelectItem value="ARTIFICIAL INTELLIGENCE & DATA SCIENCE (AI & DS)" title="ARTIFICIAL INTELLIGENCE & DATA SCIENCE (AI & DS)" className="whitespace-normal break-words py-2 px-3 leading-5 min-h-[44px]">Artificial Intelligence & Data Science (AI & DS)</SelectItem>
+                        <SelectItem value="COMPUTER SCIENCE AND ENGINEERING (CSE)" title="COMPUTER SCIENCE AND ENGINEERING (CSE)" className="whitespace-normal break-words py-2 px-3 leading-5 min-h-[44px]">Computer Science and Engineering (CSE)</SelectItem>
+                        <SelectItem value="INFORMATION TECHNOLOGY (IT)" title="INFORMATION TECHNOLOGY (IT)" className="whitespace-normal break-words py-2 px-3 leading-5 min-h-[44px]">Information Technology (IT)</SelectItem>
+                        <SelectItem value="ELECTRONICS AND COMMUNICATION ENGINEERING (ECE)" title="ELECTRONICS AND COMMUNICATION ENGINEERING (ECE)" className="whitespace-normal break-words py-2 px-3 leading-5 min-h-[44px]">Electronics and Communication Engineering (ECE)</SelectItem>
+                        <SelectItem value="ELECTRICAL AND ELECTRONICS ENGINEERING (EEE)" title="ELECTRICAL AND ELECTRONICS ENGINEERING (EEE)" className="whitespace-normal break-words py-2 px-3 leading-5 min-h-[44px]">Electrical and Electronics Engineering (EEE)</SelectItem>
+                        <SelectItem value="MECHANICAL ENGINEERING" title="MECHANICAL ENGINEERING" className="whitespace-normal break-words py-2 px-3 leading-5 min-h-[44px]">Mechanical Engineering (ME)</SelectItem>
+                        <SelectItem value="CIVIL ENGINEERING" title="CIVIL ENGINEERING" className="whitespace-normal break-words py-2 px-3 leading-5 min-h-[44px]">Civil Engineering (CE)</SelectItem>
+                        <SelectItem value="Other" title="Other" className="whitespace-normal break-words py-2 px-3 leading-5 min-h-[44px]">Other</SelectItem>
                       </SelectContent>
                     </Select>
                     <FormMessage className="font-caveat text-brand-error" />
@@ -460,7 +473,7 @@ export function ApplicationForm({ onProgressChange, progress }: { onProgressChan
             <Button 
               type="submit" 
               disabled={isSubmitting}
-              className="group relative flex items-center justify-center gap-4 bg-[#2F2F2F] font-caveat text-3xl h-auto py-4 px-10 rounded-xl hover:-translate-y-1 transition-all duration-300 overflow-visible z-10 shadow-lg hover:shadow-xl disabled:opacity-75 disabled:hover:translate-y-0"
+              className="w-full max-w-sm mx-auto md:w-auto group relative flex items-center justify-center gap-4 bg-[#2F2F2F] font-caveat text-3xl h-auto py-4 px-10 rounded-xl hover:-translate-y-1 transition-all duration-300 overflow-visible z-10 shadow-lg hover:shadow-xl disabled:opacity-75 disabled:hover:translate-y-0"
             >
               {/* Hand-drawn clean border layers */}
               <div className="absolute inset-0 border-[1.5px] border-[#111111] rounded-xl rounded-tr-[14px] rounded-bl-[12px] rotate-[0.5deg] scale-[1.01] pointer-events-none opacity-40"></div>
